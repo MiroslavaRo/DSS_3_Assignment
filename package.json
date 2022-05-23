@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/MiroslavaRo/DSS_3_Assignment/issues"
   },
-  "homepage": "https://github.com/MiroslavaRo/DSS_3_Assignment#readme"
+  "homepage": "https://github.com/MiroslavaRo/DSS_3_Assignment#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
