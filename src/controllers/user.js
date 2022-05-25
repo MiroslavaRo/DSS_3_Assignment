@@ -112,3 +112,21 @@ module.exports.delete = async ({ params }, res) => {
     }
 
 }
+
+module.exports.login = async ({ body }, res) => {
+    try {
+        const user = await User.findByCredentials(body.username, body.password);
+        const token = await user.generateToken();
+
+        res.status(200).send(token);
+    }
+    catch (error) {
+        console.log(error.message);
+
+        res.status(400).send({
+            error: error.message,
+            date: new Date()
+        })
+    }
+
+}

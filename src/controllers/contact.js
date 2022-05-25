@@ -2,12 +2,11 @@ const Contact = require('../database/models/contact')
 const mongoose = require('mongoose');
 const UpdateKeys = ['firstName', "lastName", "company", "address", "phones", "emails"];
 
-module.exports.list = async ({ query: filter}, res) => {
-
+module.exports.list = async ({ query: filter, user }, res) => {
     try {
-       // console.log(filter);
-        const users = await Contact.find(filter);
-        res.status(200).send(users);
+        filter.owner = user._id;
+        const contacts = await Contact.find(filter);
+        res.status(200).send(contacts);
     }
     catch (error) {
         console.log(error.message);
@@ -15,19 +14,13 @@ module.exports.list = async ({ query: filter}, res) => {
         res.status(400).send({
             error: error.message,
             date: new Date()
-
-        });
-
+        })
     }
-
 }
-module.exports.details = async ({ params: { id } }, res) => {
-    try {
 
-        let contact = await Contact.findById(id);
-        if (!contact) {
-            throw new Error("Could not find contact with this id " + params.id);
-        }
+module.exports.details = async ({ params: { id }, user }, res) => {
+    try {
+        const contact = await Contact.findOne({ _id: id, owner: user._id });
         res.status(200).send(contact);
     }
     catch (error) {
@@ -38,14 +31,17 @@ module.exports.details = async ({ params: { id } }, res) => {
             date: new Date()
         })
     }
-
 }
-module.exports.create = async ({ body }, res) => {
+
+module.exports.create = async ({ body, user }, res) => {
     try {
         var contact = new Contact({
-            userId: new mongoose.Types.ObjectId(),
+            contactId: new mongoose.Types.ObjectId(),
             ...body
         });
+
+        contact.owner = user._id;
+
         await contact.save();
         res.status(200).send(contact);
     }
@@ -57,23 +53,21 @@ module.exports.create = async ({ body }, res) => {
             date: new Date()
         })
     }
-
 }
 
-module.exports.update = async ({ body, params }, res) => {
+module.exports.update = async ({ body, params, user }, res) => {
     try {
-        
         const validKeys = Object.keys(body).every(key => {
             return UpdateKeys.includes(key);
         })
-        if (!validKeys) {
-            throw new Error("Invalid update parameters");
 
+        if (!validKeys) {
+            throw new Error('Invalid update parameters');
         }
 
-        let contact = await Contact.findOne({ _id: params.id });
+        let contact = await Contact.findOne({ _id: params.id, owner: user._id });
         if (!contact) {
-            throw new Error("Could not find contact with this id " + params.id);
+            throw new Error(`Could not find contact with id ${params.id}`);
         }
 
         Object.keys(body).forEach(key => {
@@ -91,14 +85,19 @@ module.exports.update = async ({ body, params }, res) => {
             date: new Date()
         })
     }
-
 }
 
-module.exports.delete = async ({ params }, res) => {
+module.exports.delete = async ({ params, user }, res) => {
     try {
-        const contact = await Contact.findOneAndDelete({ _id: params.id }, { returnDocument:true });
+        const contact = await Contact.findOneAndDelete({
+            _id: params.id,
+            owner: user._id
+        }, {
+            returnDocument: true
+        });
+
         if (!contact) {
-            throw new Error("Could not find contact with this id " + params.id);
+            throw new Error(`Could not find contact with id ${params.id}`);
         }
 
         res.status(200).send(contact);
@@ -111,5 +110,4 @@ module.exports.delete = async ({ params }, res) => {
             date: new Date()
         })
     }
-
 }
