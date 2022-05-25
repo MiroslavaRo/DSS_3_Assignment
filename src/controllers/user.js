@@ -93,14 +93,14 @@ module.exports.update = async ({ body, params }, res) => {
 
 }
 
-module.exports.delete = async ({ params }, res) => {
+module.exports.delete = async ({ user }, res) => {
     try {
-        const user = await User.findOneAndDelete({ _id: params.id }, { returnDocument: true });
-        if (!user) {
-            throw new Error("Could not find user with this id " + params.id);
+        const db = await User.findOneAndDelete({ _id: user._id }, { returnDocument: true });
+        if (!db) {
+            throw new Error("Could not find user with id " + user._id);
         }
 
-        res.status(200).send(user);
+        res.status(200).send(db);
     }
     catch (error) {
         console.log(error.message);
@@ -110,7 +110,6 @@ module.exports.delete = async ({ params }, res) => {
             date: new Date()
         })
     }
-
 }
 
 module.exports.login = async ({ body }, res) => {
