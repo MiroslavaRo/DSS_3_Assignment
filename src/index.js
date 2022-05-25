@@ -1,5 +1,6 @@
 const express = require('express');
 const contactRouter = require('./routes/contact')
+const userRouter = require('./routes/user')
 
 const PORT_NUMBER = process.env.PORT | 3002;
 const app = express();
@@ -9,6 +10,7 @@ require('./database/mongoose');
 
 app.use(express.json());
 app.use('/contacts', contactRouter)
+app.use('/users', userRouter)
 app.get('/help', (req, res) => {
 
     res.status(200).send({
