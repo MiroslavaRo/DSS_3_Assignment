@@ -1,4 +1,5 @@
-const User = require('../database/models/user')
+const User = require('../database/models/user');
+const Contact = require('../database/models/contact')
 const mongoose = require('mongoose');
 const UpdateKeys = ['username', "password", "name"];
 
@@ -93,12 +94,43 @@ module.exports.update = async ({ body, params }, res) => {
 
 }
 
-module.exports.delete = async ({ user }, res) => {
+module.exports.delete = async ({ query: filter, user }, res) => {
     try {
-        const db = await User.findOneAndDelete({ _id: user._id }, { returnDocument: true });
-        if (!db) {
-            throw new Error("Could not find user with id " + user._id);
+        filter.owner = user._id;
+        const contacts = await Contact.find(filter);
+        for (var i = 0; i < contacts.length; i++) {
+            let cont_id = contacts[i]._id.toString();
+            console.log(cont_id);
+            try {
+                const contact = await Contact.findOneAndDelete({
+                    _id: cont_id
+                }, {
+                    returnDocument: true
+                });
+
+                if (!contact) {
+                    throw new Error(`Could not find contact with id ${cont_id}`);
+                }
+
+                res.status(200).send(contact);
+            }
+            catch (error) {
+                console.log(error.message);
+
+                res.status(400).send({
+                    error: error.message,
+                    date: new Date()
+                })
+            }
+
         }
+        
+          const db = await User.findOneAndDelete({ _id: user._id }, { returnDocument: true });
+          if (!db) {
+             throw new Error("Could not find user with id " + user._id);
+          }
+
+       // res.status(200).send(contacts);
 
         res.status(200).send(db);
     }
@@ -111,6 +143,7 @@ module.exports.delete = async ({ user }, res) => {
         })
     }
 }
+
 
 module.exports.login = async ({ body }, res) => {
     try {
