@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+   api:
+     container_name: contact-api
+     restart: on-failure
+     build:
+       context: .
+       dockerfile: Dockerfile
+     ports:
+       - "5555:555"
+     env_file:
+       - .env
+     networks:
+       - contacts_network
+     depends_on:
+       - mogodata
+
+   mogodata:
+     container_name: data
+     image: mongo
+     restart: always
+     ports:
+       - '27017:27017'  
+     environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: root
+     networks:
+       - contacts_network
+     volumes:
+       - 'mongodb:/data/db'
+
+
+networks:
+ contacts_network: null
+
+volumes:
+ mongodb: null
