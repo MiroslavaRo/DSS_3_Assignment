@@ -1,6 +1,5 @@
 const validateEmailRegex = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/'
 const validatePhoneRegex = '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'
-const maxAvatarSizeBytes = 5120;
 
 const mongoose = require('mongoose');
 
@@ -76,10 +75,7 @@ const schema = new mongoose.Schema({
     }],
     avatar: {
         type: Buffer,
-        required: false,
-        validate: (value) => {
-            return value.length <= maxAvatarSizeBytes
-        }
+        required: false
 
     }
 
