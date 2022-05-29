@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE  5533
 
-CMD ["node", ".\src\index.js"]
+CMD ["node", ".\src\index.js"]`
