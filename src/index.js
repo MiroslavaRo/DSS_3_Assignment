@@ -3,7 +3,7 @@ const contactRouter = require('./routes/contact')
 const userRouter = require('./routes/user')
 const error = require('./middlewares/error');
 
-const PORT_NUMBER = process.env.PORT || 3000;
+const PORT_NUMBER = process.env.PORT || 3002;
 const app = express();
 
 //Conecting to database
@@ -34,6 +34,6 @@ app.get('*', (req, res) => {
 
 });
 
-app.listen(3000, () => {
+app.listen(3002, () => {
     console.log("Server is listening on port " + PORT_NUMBER);
 });

@@ -8,6 +8,6 @@
     "\\src\\middlewares",
     "\\src\\routes"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\database\\mongoose.js",
   "PreviewInSolutionExplorer": false
 }
