@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\controllers",
+    "\\src\\database",
+    "\\src\\database\\models",
+    "\\src\\middlewares",
     "\\src\\routes"
   ],
-  "SelectedNode": "\\src\\index.js",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }
