@@ -33,7 +33,7 @@ app.get('*', (req, res) => {
     });
 
 });
-//.listen(process.env.PORT || 5000)
-app.listen(process.env.PORT || 3002, () => {
+
+app.listen(PORT_NUMBER, () => {
     console.log("Server is listening on port " + PORT_NUMBER);
 });
