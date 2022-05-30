@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionString = process.env.CONNECTION_STRING || "mongodb://localhost:27017";
+const connectionString = "mongodb+srv://admin:admin@contactbook01.4hmtl.mongodb.net/?retryWrites=true&w=majority";
     //"mongodb+srv://admin:admin@contactbook01.4hmtl.mongodb.net/?retryWrites=true&w=majority"
     // process.env.CONNECTION_STRING || "mongodb://localhost:27017";
 
