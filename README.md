@@ -8,7 +8,7 @@ Contact Book 2022
 
 ##  USERS
 
-### 1) Register: `http://localhost:3002/users` (Post)
+### 1) Register: https://miros-contactbook-2022.herokuapp.com/users (Post)
 *Example:*
 ```
 {
@@ -19,7 +19,7 @@ Contact Book 2022
     "updatedAt": "2022-08-02T13:23:33.750Z"
 }
 ```
-### 2) Login: `https://miros-contactbook-2022.herokuapp.com/users/login` (Post) 
+### 2) Login: https://miros-contactbook-2022.herokuapp.com/users/login (Post) 
 Barear token for auth
 
 *Example:*
@@ -29,13 +29,13 @@ Barear token for auth
     "password": "newpassword"
 }
 ```
-### 3) List of users: `http://localhost:3002/users` (Get)
+### 3) List of users: http://localhost:3002/users (Get)
 
 
 ## CONTACTS
-### 0) List of contacts for current user: `https://miros-contactbook-2022.herokuapp.com/contacts` (Get)
+### 0) List of contacts for current user: https://miros-contactbook-2022.herokuapp.com/contacts (Get)
 
-### 1) Add new contact: `https://miros-contactbook-2022.herokuapp.com/contacts` (Post)
+### 1) Add new contact: https://miros-contactbook-2022.herokuapp.com/contacts (Post)
 *Example:*
 ```
 {
@@ -52,7 +52,7 @@ Barear token for auth
     "emails": ["some.mail@smth.com"]
 }
 ```
-### 2) Edit contact <sub> use conatct id</sub>: `https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e` (Put)
+### 2) Edit contact: https://miros-contactbook-2022.herokuapp.com/contacts/contact_id (Put)
 *Example:*
 ```
 {
@@ -60,9 +60,9 @@ Barear token for auth
     "lastName": "Neceda"
 }
 ```
-### 3) Delete contact <sub> use conatct id</sub>: `https://miros-contactbook-2022.herokuapp.com/contacts/62e932b5141fc58b979bc53b` (Delete)
+### 3) Delete contact: https://miros-contactbook-2022.herokuapp.com/contacts/contact_id (Delete)
 
-### 4) Add avatar to contact <sub> use conatct id</sub>: `https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e/avatar` (Post)
+### 4) Add avatar to contact: https://miros-contactbook-2022.herokuapp.com/contacts/contact_id/avatar (Post)
 file ("file") value
 
-### 5) Get avatar to contact <sub> use conatct id</sub>: `https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e/avatar` (Get)
+### 5) Get avatar to contact: https://miros-contactbook-2022.herokuapp.com/contacts/contact_id/avatar (Get)
