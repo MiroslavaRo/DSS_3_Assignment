@@ -6,7 +6,7 @@ Contact Book 2022
 - npm run debug (connection to db)
 
 
-## --------------------------USERS--------------------------
+##  USERS
 
 ### 1) Register: http://localhost:3002/users (Post)
 *Example:*
@@ -19,7 +19,8 @@ Contact Book 2022
     "updatedAt": "2022-08-02T13:23:33.750Z"
 }
 ```
-### 2) Login: https://miros-contactbook-2022.herokuapp.com/users/login (Post) //barear token for auth
+### 2) Login: https://miros-contactbook-2022.herokuapp.com/users/login (Post) 
+<sub> barear token for auth</sub>
 *Example:*
 ```
 {
@@ -30,10 +31,10 @@ Contact Book 2022
 ### 3) List of users: http://localhost:3002/users (Get)
 
 
-## ---------------CONTACTS---------------------
-### 0) List of contacts for current user: https://miros-contactbook-2022.herokuapp.com/contacts (Get)
+## CONTACTS
+0. List of contacts for current user: https://miros-contactbook-2022.herokuapp.com/contacts (Get)
 
-### 1) Add new contact: https://miros-contactbook-2022.herokuapp.com/contacts (Post)
+1. Add new contact: https://miros-contactbook-2022.herokuapp.com/contacts (Post)
 *Example:*
 ```
 {
@@ -50,7 +51,8 @@ Contact Book 2022
     "emails": ["some.mail@smth.com"]
 }
 ```
-### 2) Edit contact: https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e (Put) //contact id
+2. Edit contact: https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e (Put)
+<sub> conatct id</sub>
 *Example:*
 ```
 {
@@ -58,11 +60,13 @@ Contact Book 2022
     "lastName": "Neceda"
 }
 ```
-### 3) Delete contact: https://miros-contactbook-2022.herokuapp.com/contacts/62e932b5141fc58b979bc53b (Delete) //contact id
-
-### 4) Add avatar to contact: 
-(https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e/avatar) (Post) //contact id
+3. Delete contact: https://miros-contactbook-2022.herokuapp.com/contacts/62e932b5141fc58b979bc53b (Delete)
+<sub> conatct id</sub>
+4. Add avatar to contact: 
+(https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e/avatar) (Post)
+<sub> conatct id</sub>
 file ("file") value
 
-### 5) Get avatar to contact: 
-(https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e/avatar) (Get) //contact id
+5. Get avatar to contact: 
+(https://miros-contactbook-2022.herokuapp.com/contacts/62e930d2141fc58b979bc52e/avatar) (Get)
+<sub> conatct id</sub>
